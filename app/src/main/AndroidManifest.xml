@@ -10,13 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KotlinBasics">
         <activity
+            android:name=".Intent_Two"
+            android:exported="false" />
+        <activity
+            android:name="ViewControl_02"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".TestActivity"
             android:exported="false" />
         <activity
-            android:name=".ViewControl_02"
+            android:name=".Intent_One"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
