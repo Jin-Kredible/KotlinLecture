@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FragmentActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/fragment_first"
+        android:name="com.example.kotlinbasics.FragmentFirst"
+        tools:layout="@layout/first_fragment"/>
+
+    <TextView
+        android:id="@+id/add"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Add"
+        android:gravity="center"
+        android:background="@color/white"/>
+
+    <TextView
+        android:id="@+id/remove"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Remove"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@color/black"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/root"/>
+
+    <TextView
+        android:id="@+id/access_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Access_Fragment"
+        android:gravity="center"
+        android:background="@color/cardview_dark_background"
+        android:textColor="@color/black"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
