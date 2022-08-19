@@ -5,7 +5,7 @@ import retrofit2.http.GET
 
 class StudentFromServer( val id: Int, val name: String, val age : Int, val intro : String)
 
-class YoutubeItem(val id : Int, val title : String, val content : String, val video : String, val thumnail : String)
+class YoutubeItem(val id : Int, val title : String, val content : String, val video : String, val thumbnail : String)
 
 interface RetrofitService {
 

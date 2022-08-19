@@ -1,8 +1,10 @@
 package com.example.kotlinbasics
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Layout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import org.w3c.dom.Text
 import retrofit2.Call
@@ -34,10 +37,10 @@ class YoutubeActivity : AppCompatActivity() {
                 response: Response<ArrayList<YoutubeItem>>
             ) {
                 val youtubeItemList = response.body()
+                val glide = Glide.with(this@YoutubeActivity)
+                val adapter = YoutubeListAdapter(youtubeItemList!!, LayoutInflater.from(this@YoutubeActivity),glide,this@YoutubeActivity)
 
-                youtubeItemList!!.forEach {
-                    Log.d("testt",it.title)
-                }
+                findViewById<RecyclerView>(R.id.youtube_recycler).adapter = adapter
             }
 
             override fun onFailure(call: Call<ArrayList<YoutubeItem>>, t: Throwable) {
@@ -49,7 +52,7 @@ class YoutubeActivity : AppCompatActivity() {
     }
 }
 
-class YoutubeListAdapter (val youtubeItemList : ArrayList<YoutubeItem>, val inflater : LayoutInflater, val glide : RequestManager, val context : Context ) : RecyclerView.Adapter<YoutubeListAdapter.ViewHoler> {
+class YoutubeListAdapter (val youtubeItemList : ArrayList<YoutubeItem>, val inflater : LayoutInflater, val glide : RequestManager, val context : Context ) : RecyclerView.Adapter<YoutubeListAdapter.ViewHolder>() {
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val title : TextView
         val thumbnail : ImageView
@@ -60,19 +63,29 @@ class YoutubeListAdapter (val youtubeItemList : ArrayList<YoutubeItem>, val infl
             thumbnail = itemView.findViewById(R.id.thumbnail)
             content = itemView.findViewById(R.id.content)
 
+            itemView.setOnClickListener {
+                val position : Int = adapterPosition
+                val intent = Intent(context, YoutubeItemActivity::class.java)
+                intent.putExtra("video_url",youtubeItemList.get(adapterPosition).video)
+                context.startActivity(intent)
+            }
+
         }
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): YoutubeListAdapter.ViewHolder {
-        TODO("Not yet implemented")
+    ): ViewHolder {
+       val view = inflater.inflate(R.layout.youtube_item, parent, false)
+        return ViewHolder(view)
     }
 
 
     override fun onBindViewHolder(holder: YoutubeListAdapter.ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.title.text = youtubeItemList.get(position).title
+        holder.content.text = youtubeItemList.get(position).content
+        glide.load((youtubeItemList.get(position).thumbnail)).centerCrop().into(holder.thumbnail)
     }
 
     override fun getItemCount(): Int {
