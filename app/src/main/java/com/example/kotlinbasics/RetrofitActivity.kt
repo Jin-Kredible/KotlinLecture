@@ -59,24 +59,24 @@ class RetrofitActivity : AppCompatActivity() {
             student.put("name","TEST")
             student.put("intro","test2")
             student.put("age",23)
-            retrofitService.createStudent(student).enqueue(object : Callback<StudentFromServer>{
-                override fun onResponse(
-                    call: Call<StudentFromServer>,
-                    response: Response<StudentFromServer>
-                ) {
-                    if(response.isSuccessful) {
-                        val student = response.body()
-                        Log.d("testt","등록한 학생 : " + student!!.name)
-                    }
-                }
-
-                override fun onFailure(call: Call<StudentFromServer>, t: Throwable) {
-
-                    Log.d("testt","등록한 학생 : " )
-
-                }
-
-            })
+//            retrofitService.createStudent(student).enqueue(object : Callback<StudentFromServer>{
+//                override fun onResponse(
+//                    call: Call<StudentFromServer>,
+//                    response: Response<StudentFromServer>
+//                ) {
+//                    if(response.isSuccessful) {
+//                        val student = response.body()
+//                        Log.d("testt","등록한 학생 : " + student!!.name)
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<StudentFromServer>, t: Throwable) {
+//
+//                    Log.d("testt","등록한 학생 : " )
+//
+//                }
+//
+//            })
         }
 
 
