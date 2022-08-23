@@ -56,9 +56,10 @@ class InstaLoginActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<UserToken>, response: Response<UserToken>) {
                     if(response.isSuccessful) {
                         val userToken = response.body()!!
-                        val sharedPreferences = getSharedPreferences("user_into", Context.MODE_PRIVATE)
+                        val sharedPreferences = getSharedPreferences("user_info", Context.MODE_PRIVATE)
                         val editor : SharedPreferences.Editor = sharedPreferences.edit()
                         editor.putString("token",userToken.token)
+                        editor.putString("user_id",userToken.id)
                         editor.commit()
 
                     }

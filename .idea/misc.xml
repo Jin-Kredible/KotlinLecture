@@ -15,6 +15,8 @@
         <entry key="app/src/main/res/layout/activity_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_insta_join.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_insta_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_insta_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_insta_splash.xml" value="0.17314814814814813" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15833333333333333" />
         <entry key="app/src/main/res/layout/activity_master_application.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_melon.xml" value="0.1" />
