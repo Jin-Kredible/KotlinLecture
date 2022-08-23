@@ -1,7 +1,8 @@
 package com.example.kotlinbasics
 
+import android.media.session.MediaSession
 import retrofit2.Call
-import retrofit2.http.GET
+import retrofit2.http.*
 import java.io.Serializable
 
 class StudentFromServer( val id: Int, val name: String, val age : Int, val intro : String)
@@ -9,6 +10,9 @@ class StudentFromServer( val id: Int, val name: String, val age : Int, val intro
 class YoutubeItem(val id : Int, val title : String, val content : String, val video : String, val thumbnail : String)
 
 class MelonItem(val id : Int, val title : String, val song : String, val thumbnail : String) : Serializable
+
+class UserToken(val id : String, val token: String, val userName: String)
+
 
 interface RetrofitService {
 
@@ -20,5 +24,14 @@ interface RetrofitService {
 
     @GET("youtube/list")
     fun getYoutubeItemList() : Call<ArrayList<YoutubeItem>>
+
+    @POST("user/login/")
+    @FormUrlEncoded
+    fun instaLogin(@FieldMap params : HashMap<String,Any>) : Call<UserToken>
+
+    @POST("user/signup/")
+    @FormUrlEncoded
+    fun instaJoin(@FieldMap params : HashMap<String,Any>) : Call<UserToken>
+
 
 }
