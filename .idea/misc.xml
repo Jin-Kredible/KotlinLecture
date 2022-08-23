@@ -14,6 +14,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15833333333333333" />
         <entry key="app/src/main/res/layout/activity_master_application.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_melon.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_melon_detail.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_permission.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/activity_retrofit.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_room.xml" value="0.17604166666666668" />

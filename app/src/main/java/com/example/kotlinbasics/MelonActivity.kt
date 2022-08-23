@@ -20,6 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.Serializable
 
 class MelonActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,8 +43,6 @@ class MelonActivity : AppCompatActivity() {
                 findViewById<RecyclerView>(R.id.melon_list_view).apply {
                     this.adapter = MelonItemRecyclerAdapter(melon!!, LayoutInflater.from(this@MelonActivity), Glide.with(this@MelonActivity),this@MelonActivity )
                 }
-
-
 
             }
 
@@ -74,7 +73,8 @@ class MelonItemRecyclerAdapter(val melonItemList: ArrayList<MelonItem>, val infl
 
                 play.setOnClickListener {
                     val intent = Intent(context, MelonDetailActivity::class.java)
-                    intent.putExtra("melonList",melonItemList)
+                    intent.putExtra("melonList",melonItemList as Serializable)
+                    intent.putExtra("position",adapterPosition)
                     context.startActivity(intent)
 
 
