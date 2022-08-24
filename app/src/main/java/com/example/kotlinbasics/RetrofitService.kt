@@ -13,10 +13,10 @@ class MelonItem(val id : Int, val title : String, val song : String, val thumbna
 
 class UserToken(val id : String, val token: String, val userName: String)
 
-class InstaPost(val content : String, val image : String, val owner_profile : OwnerProfile)
+class InstaPost(val id: Int, val content : String, val image : String, val owner_profile : OwnerProfile)
 
 
-class OwnerProfile ( val username : String, val image : String  )
+class OwnerProfile ( val username : String, val image : String?  )
 
 interface RetrofitService {
 
@@ -40,6 +40,6 @@ interface RetrofitService {
     @GET("instagram/post/list/all")
     fun getInstagramPosts() : Call<ArrayList<InstaPost>>
 
-
+//    @POST("instagram/post/like/{post_id}")
 
 }

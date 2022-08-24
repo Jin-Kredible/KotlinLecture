@@ -13,11 +13,11 @@
         android:paddingLeft="13dp"
         android:paddingBottom="5dp">
     <ImageView
+        android:src="@drawable/btn_outsta_my"
         android:id="@+id/owner_img"
         android:layout_width="60dp"
         android:layout_marginRight="10dp"
         android:layout_height="60dp"/>
-
     <TextView
         android:id="@+id/owner_username"
         android:layout_width="wrap_content"
@@ -25,13 +25,33 @@
         android:textColor="#303030"
         android:layout_height="wrap_content"/>
 
-
-
     </androidx.appcompat.widget.LinearLayoutCompat>
-    <ImageView
-        android:id="@+id/post_img"
+    <FrameLayout
+        android:id="@+id/post_heart"
         android:layout_width="match_parent"
-        android:layout_height="412dp"/>
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/post_img"
+            android:layout_width="match_parent"
+            android:layout_height="412dp"/>
+        <ImageView
+            android:id="@+id/post_layer"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:alpha="0.3"/>
+        <ImageView
+            android:id="@+id/post_heart"
+            android:visibility="invisible"
+            android:src="@drawable/img_like"
+            android:layout_gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="90dp"/>
+
+    </FrameLayout>
+
 
 
     <TextView

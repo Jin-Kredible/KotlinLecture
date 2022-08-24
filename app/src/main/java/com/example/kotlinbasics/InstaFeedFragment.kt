@@ -19,12 +19,19 @@ import retrofit2.converter.gson.GsonConverterFactory
 class InstaFeedFragment :Fragment(){
 
 
+    lateinit var retrofitService: RetrofitService
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.insta_feed_fragment,container, false)
+    }
+
+
+    fun postLike() {
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,7 +43,7 @@ class InstaFeedFragment :Fragment(){
             .baseUrl("http://mellowcode.org/").addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val retrofitService = retrofit.create(RetrofitService::class.java)
+        retrofitService = retrofit.create(RetrofitService::class.java)
 
 
         retrofitService.getInstagramPosts().enqueue(object : Callback<ArrayList<InstaPost>>{
@@ -85,7 +92,7 @@ class PostRecyclerViewAdapter( val postList : ArrayList<InstaPost>, val inflater
         val post = postList.get(position)
 
             post.owner_profile.image?.let {
-                glide.load(post.owner_profile.image).centerCrop().into(holder.ownerImg)
+                glide.load(post.owner_profile.image).centerCrop().circleCrop().into(holder.ownerImg)
             }
 
             glide.load(post.image).centerCrop().into(holder.postImg)
