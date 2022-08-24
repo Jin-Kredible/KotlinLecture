@@ -13,6 +13,10 @@ class MelonItem(val id : Int, val title : String, val song : String, val thumbna
 
 class UserToken(val id : String, val token: String, val userName: String)
 
+class InstaPost(val content : String, val image : String, val owner_profile : OwnerProfile)
+
+
+class OwnerProfile ( val username : String, val image : String  )
 
 interface RetrofitService {
 
@@ -32,6 +36,10 @@ interface RetrofitService {
     @POST("user/signup/")
     @FormUrlEncoded
     fun instaJoin(@FieldMap params : HashMap<String,Any>) : Call<UserToken>
+
+    @GET("instagram/post/list/all")
+    fun getInstagramPosts() : Call<ArrayList<InstaPost>>
+
 
 
 }

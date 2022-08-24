@@ -62,6 +62,8 @@ class InstaLoginActivity : AppCompatActivity() {
                         editor.putString("user_id",userToken.id)
                         editor.commit()
 
+                        startActivity(Intent(this@InstaLoginActivity,InstaMainActivity::class.java))
+
                     }
                 }
 

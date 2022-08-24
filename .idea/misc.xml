@@ -31,7 +31,12 @@
         <entry key="app/src/main/res/layout/activity_thread.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_view_control02.xml" value="0.15833333333333333" />
         <entry key="app/src/main/res/layout/first_fragment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/insta_fee_fragment.xml" value="0.17314814814814813" />
+        <entry key="app/src/main/res/layout/insta_feed_fragment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/insta_post_fragment.xml" value="0.17314814814814813" />
+        <entry key="app/src/main/res/layout/insta_profile_fragment.xml" value="0.17314814814814813" />
         <entry key="app/src/main/res/layout/melon_item.xml" value="0.1109375" />
+        <entry key="app/src/main/res/layout/post_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/studentitem.xml" value="0.1" />
       </map>
     </option>

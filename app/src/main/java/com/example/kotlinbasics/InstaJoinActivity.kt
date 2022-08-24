@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import org.w3c.dom.Text
 import retrofit2.Call
@@ -65,12 +66,14 @@ class InstaJoinActivity : AppCompatActivity() {
                         editor.putString("token",userToken.token)
                         editor.putString("user_id",userToken.id)
                         editor.commit()
+                        startActivity(Intent(this@InstaJoinActivity,InstaLoginActivity::class.java))
 
                     }
                 }
 
                 override fun onFailure(call: Call<UserToken>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    Toast.makeText(this@InstaJoinActivity,"이미 생성된 계정입니다",Toast.LENGTH_SHORT).show()
+
                 }
 
 
