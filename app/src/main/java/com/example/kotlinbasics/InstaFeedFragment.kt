@@ -1,11 +1,15 @@
 package com.example.kotlinbasics
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -30,8 +34,17 @@ class InstaFeedFragment :Fragment(){
     }
 
 
-    fun postLike() {
+    fun postLike(postId : Int) {
+        retrofitService.postLike(postId).enqueue(object: Callback<Any>{
+            override fun onResponse(call: Call<Any>, response: Response<Any>) {
 
+            }
+
+            override fun onFailure(call: Call<Any>, t: Throwable) {
+
+            }
+
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,7 +67,7 @@ class InstaFeedFragment :Fragment(){
 
                val postList = response.body()
                 val postRecyclerView = view.findViewById<RecyclerView>(R.id.feed_list)
-                postRecyclerView.adapter = PostRecyclerViewAdapter(postList!!, LayoutInflater.from(activity), Glide.with(activity!!))
+                postRecyclerView.adapter = PostRecyclerViewAdapter(postList!!, LayoutInflater.from(activity), Glide.with(activity!!), this@InstaFeedFragment, activity as InstaMainActivity)
             }
 
             override fun onFailure(call: Call<ArrayList<InstaPost>>, t: Throwable) {
@@ -67,7 +80,7 @@ class InstaFeedFragment :Fragment(){
     }
 }
 
-class PostRecyclerViewAdapter( val postList : ArrayList<InstaPost>, val inflater : LayoutInflater, val glide : RequestManager)
+class PostRecyclerViewAdapter( val postList : ArrayList<InstaPost>, val inflater : LayoutInflater, val glide : RequestManager, val instaFeedFragment: InstaFeedFragment, val activity: InstaMainActivity)
     : RecyclerView.Adapter<PostRecyclerViewAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
@@ -75,13 +88,37 @@ class PostRecyclerViewAdapter( val postList : ArrayList<InstaPost>, val inflater
         val ownerUsername : TextView
         val postImg : ImageView
         val postContent : TextView
+        val postLayer : ImageView
+        val postHeart : ImageView
 
         init{
             ownerImg = itemView.findViewById(R.id.owner_img)
             ownerUsername = itemView.findViewById(R.id.owner_username)
             postImg = itemView.findViewById(R.id.post_img)
             postContent = itemView.findViewById(R.id.post_content)
+            postLayer = itemView.findViewById(R.id.post_layer)
+            postHeart = itemView.findViewById(R.id.post_heart)
+
+            postImg.setOnClickListener {
+                instaFeedFragment.postLike(postList.get(adapterPosition).id)
+                Thread {
+
+                    activity.runOnUiThread {
+                        postLayer.visibility = VISIBLE
+                        postHeart.visibility = VISIBLE
+
+                    }
+                    Thread.sleep(2000)
+
+                    activity.runOnUiThread {
+                        postLayer.visibility = INVISIBLE
+                        postHeart.visibility = INVISIBLE
+
+                    }
+                }.start()
+            }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

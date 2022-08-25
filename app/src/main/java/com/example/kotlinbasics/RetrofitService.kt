@@ -40,6 +40,9 @@ interface RetrofitService {
     @GET("instagram/post/list/all")
     fun getInstagramPosts() : Call<ArrayList<InstaPost>>
 
-//    @POST("instagram/post/like/{post_id}")
+    @POST("instagram/post/like/{post_id}")
+    fun postLike(
+        @Path("post_id") postId : Int,
+    ) : Call<Any>
 
 }
